@@ -949,4 +949,164 @@ for i in range(n) :
 #------------------------------------------------------
 # Triangle Area
 
+from math import *
+
+n = int(input())
+f = open('t.txt')
+
+res = []
+for i in range(n) :
+    string = f.readline()
+    arr = [int(elem) for elem in string.split()]
+
+    a = ((arr[0]-arr[2])**2+(arr[1]-arr[3])**2)**(1/2)
+    b = ((arr[0]-arr[4])**2+(arr[1]-arr[5])**2)**(1/2)
+    c = ((arr[2]-arr[4])**2+(arr[3]-arr[5])**2)**(1/2) 
+    p = (a+b+c)/2
+    s = round((p*(p-a)*(p-b)*(p-c))**(1/2),1)
+
+    res.append(s)
+
+
+for i in range(len(res)) :
+    print(res[i], end = " ")
+
+#------------------------------------------------------
+# Rock Paper Scissors
+
+n = int(input())
+
+res = []
+for i in range(n) :
+    string = input()
+    arr = [elem for elem in string.split()]
+
+    counter = 0
+    for j in range(len(arr)) : 
+        if arr[j][0] == arr[j][1] :
+            counter = counter 
+        elif arr[j][0] == "P" and arr[j][1] == "S" :
+            counter -= 1
+        elif arr[j][0] == "S" and arr[j][1] == "P" :
+            counter += 1
+        elif arr[j][0] == "P" and arr[j][1] == "R" :
+            counter += 1
+        elif arr[j][0] == "R" and arr[j][1] == "P" :
+            counter -= 1
+        elif arr[j][0] == "R" and arr[j][1] == "S" :
+            counter += 1
+        elif arr[j][0] == "S" and arr[j][1] == "R" :
+            counter -= 1
+
+    if counter > 0 :
+        res.append(1)
+    elif counter < 0 :
+        res.append(2)
+
+for i in range(len(res)) :
+    print(res[i], end = " ")
+
+#------------------------------------------------------
+# Matching Words
+# Let's write a program that sieves necessary words from 
+# the given text, and prints them in the proper order.
+
+string = input()
+arr = [elem for elem in string.split()]
+res = []
+words = []
+i = 0
+while arr[i] != "end" :
+    try :
+        if words.index(arr[i]) in range(i):
+            try :
+                if res.index(arr[i])  in range(len(res)):
+                    pass
+            except ValueError:
+                res.append(arr[i])
+
+    except ValueError:
+        words.append(arr[i])
+    i += 1
+
+res.sort()
+
+for i in range(len(res)) :
+    print(res[i], end = " ")
+
+#------------------------------------------------------
+# Card Names
+
+n = int(input())
+string = input()
+arr = [int(elem) for elem in string.split()]
+
+suits = ['Clubs', 'Spades', 'Diamonds', 'Hearts']
+ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace']
+
+res = []
+for i in range(n) :
+    card_value = arr[i]
+
+    suit_value = int(card_value / 13)
+    rank_value = int(card_value % 13) 
+
+    rank = ranks[rank_value]
+    suit = suits[suit_value]  
+
+    s = rank + "-of-" + suit
+    res.append(s)
+
+for i in range(n) :
+    print(res[i], end = " ")
+
+#------------------------------------------------------
+# Prime Numbers Generation
+
+n = int(input())
+string = input()
+arr = [int(elem) for elem in string.split()]
+
+p = 2
+nums = [el for el in range(2,70)]
+print(" p = ",p)
+while p**2 < nums[len(nums)-1] :
+    
+    i = nums.index(p**2)
+    
+    while i < len(nums) :
+        print(" i = ",i, nums[i])
+        if nums[i] % p == 0 :
+            print("remove : ", nums[i])
+            nums.remove(nums[i])
+            i -= 1
+        if p >= 5 :
+            i += 1
+        else :
+            i += p
+
+    i = 0; 
+    while nums[i] <= p :
+        i += 1
+    p = nums[i] 
+    print(" p = ",p)
+print(nums, len(nums))
+res = []
+for i in range(n) :
+    res.append(nums[arr[i]-1])
+
+for i in range(n) :
+    print(res[i], end = " ")
+
+#------------------------------------------------------
+# Joke task
+
+
+
+
+
+
+
+
+
 
